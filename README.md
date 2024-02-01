@@ -28,4 +28,6 @@ Project for beetroot course
 - Save into requirements each time `pip freeze > requirements.txt`
 - ...check postgre install
 - `django-admin startproject yourDailyDiet` 
+- `cd yourDailyDiet`
+- `python manage.py startapp ydd_db`
 
