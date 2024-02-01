@@ -1,3 +1,4 @@
+import os
 """
 Django settings for yourDailyDiet project.
 
@@ -74,11 +75,22 @@ WSGI_APPLICATION = 'yourDailyDiet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+DB_PORT = 5432
+HOST = '127.0.0.1'
+PSG_PSW = os.environ.get('PSG_PSW')
+PSG_USER = 'postgres'
+PSG_DB = PSG_USER
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+   'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': PSG_DB,
+        'USER': PSG_USER,
+        'PASSWORD': PSG_PSW,
+        'HOST': HOST,
+        'PORT': DB_PORT,
+   }
 }
 
 
