@@ -12,13 +12,13 @@ Project for beetroot course
 ### Install Docker and PostgreSQL
 - install docker 
 - lunch docker and login
-- Install postgres image [https://scriptable.com/postgresql/how-to-install-postgresql-mac-docker/] 
+
+
+- Install postgres image [ https://scriptable.com/postgresql/how-to-install-postgresql-mac-docker/ ] 
   - Run `docker pull postgres` 
   - verify with `docker images` 
   - volume `docker volume create postgres-data`
   - verify `docker volume ls`
-  
-
 
 - install module to get Python to operate with Postgres. `pip install psycopg2-binary` 
 
@@ -38,8 +38,16 @@ Project for beetroot course
 
 ## Start
 
+- save password and container name in *.env file:
+```
+PSG_PSW=<psw>
+POSTGRES_CONTAINER_NAME=<name>
+```
+
+- `source *.env`
+- `docker run --name $PSG_CONTAINER_NAME -e POSTGRES_PASSWORD=$PSG_PSW -p 5432:5432 -v postgres-data:$PSG_DATA_DIR -d postgres`
 ## Start docker
-- create a PostgreSQL container `docker run --name postgres-container -e POSTGRES_PASSWORD=<password> -p 5432:5432 -v postgres-data:<path_to_db> -d postgres`
+- create a PostgreSQL container `docker run --name <POSTGRES_CONTAINER_NAME> -e POSTGRES_PASSWORD=<PSG_PSW> -p 5432:5432 -v postgres-data:<path_to_db> -d postgres`
 
 ## Make migration and migrate db 
 - create `python manage.py makemigrations`
