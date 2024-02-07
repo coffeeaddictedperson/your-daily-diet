@@ -16,7 +16,15 @@ https://scriptable.com/postgresql/how-to-install-postgresql-mac-docker/
 ### Start next time PostgreSQL
 `docker start postgres-container `
 
+### DB  
+`psql -h 127.0.0.1 -p 5432 --username postgres --password postgres`
+>> sql
+`create database ydd_db;`
+
 ## Django app
 
 ### Create a Django app
-`django-admin startproject your_daily_diet`
+`django-admin startproject yourDailyDiet`
+
+### Creds
+`python manage.py runserver --settings=settings.local`

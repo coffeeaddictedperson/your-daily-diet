@@ -161,4 +161,4 @@ cython_debug/
 .idea/
 
 # Config
-local.env
+/yourDailyDiet/settings/
