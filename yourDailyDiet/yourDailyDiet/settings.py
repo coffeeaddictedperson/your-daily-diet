@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'ydd_db',
     'bootstrap5',
-    'crispy_bootstrap5',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
