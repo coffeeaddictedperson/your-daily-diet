@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="uk">
+<head>
+    <title>Your Daily Diet</title>
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+</head>
+<body>
+
+    {% block header %}
+        <header>
+            <h3> I am header</h3>
+        </header>
+    {% endblock %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% block footer %}
+        <footer>
+            <h4> I am footer</h4>
+        </footer>
+    {% endblock %}
+</body>
+</html>

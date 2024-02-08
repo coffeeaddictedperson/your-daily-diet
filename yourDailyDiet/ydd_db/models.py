@@ -10,7 +10,8 @@ class Meal(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     meal_name = models.CharField(max_length=50, unique=True)
     meal_description = models.CharField(max_length=255)
-    meal_type = models.CharField(max_length=1, choices=MEAL_TYPES, default='D')
+    meal_type = models.CharField(max_length=1, choices=MEAL_TYPES,
+                                 default='D', blank=False, null=False)
     is_vegetarian = models.BooleanField()
 
     def __str__(self):
