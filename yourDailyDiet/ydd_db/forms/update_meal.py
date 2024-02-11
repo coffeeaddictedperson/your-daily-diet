@@ -11,7 +11,7 @@ from ..models.meal import Meal
 class UpdateMeal(forms.ModelForm):
     class Meta:
         model = Meal
-        fields = ['name', 'description', 'meal_type', 'is_vegetarian']
+        fields = ['name', 'description', 'type', 'is_vegetarian']
         labels = LABELS
         error_messages = WARNINGS
         widgets = {
@@ -34,7 +34,7 @@ class UpdateMeal(forms.ModelForm):
                 Row('name', css_class='form-group'),
                 Row('description', css_class='form-group col-md-6'),
                 Row(
-                    Column('meal_type', css_class='form col-md-6'),
+                    Column('type', css_class='form col-md-6'),
                     Column('is_vegetarian', css_class='form col-md-6')
                 ),
             )

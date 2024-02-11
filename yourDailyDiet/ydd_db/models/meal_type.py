@@ -10,4 +10,4 @@ class MealType(models.Model):
     description = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.name} - {self.description or gettext('No description')}"
+        return self.name

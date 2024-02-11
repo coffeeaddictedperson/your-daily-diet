@@ -3,7 +3,7 @@ from django.utils.translation import gettext
 LABELS = {
     'name': gettext('Meal'),
     'description': gettext('Short description'),
-    'meal_type': gettext('Better for...'),
+    'type': gettext('Better for...'),
     'is_vegetarian': gettext('Vegetarian?')
 }
 
