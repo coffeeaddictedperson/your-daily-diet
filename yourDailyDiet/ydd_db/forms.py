@@ -1,5 +1,6 @@
 from django import forms
 
+from django.utils.translation import gettext
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Row, Submit
 
@@ -10,10 +11,10 @@ class CreateNewMeal(forms.ModelForm):
         model = Meal
         fields = ['meal_name', 'meal_description', 'meal_type', 'is_vegetarian']
         labels = {
-            'meal_name': 'Страва',
-            'meal_description': 'Короткий опис',
-            'meal_type': 'Тип страви',
-            'is_vegetarian': 'Чи вегетаріанська?'
+            'meal_name': gettext('Meal'),
+            'meal_description': gettext('Short description'),
+            'meal_type': gettext('Type of meal'),
+            'is_vegetarian': gettext('Vegetarian?')
         }
         error_messages = {
             'meal_name': {

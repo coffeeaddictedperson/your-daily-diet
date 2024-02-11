@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
 {% block content %}
-    <h1>Add meal</h1>
+    <h1>{% translate "Add new meal" %}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add meal</button>
+        <button type="submit">{% translate "Save meal" %}</button>
     </form>
 {% endblock %}
