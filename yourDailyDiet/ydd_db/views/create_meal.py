@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import reverse
 from django.views.generic import CreateView
 
 from ..models.meal import Meal
@@ -11,11 +11,10 @@ class CreateNewMealView(CreateView):
     template_name = 'add_meal.html'
 
     def form_valid(self, form):
-        # form.instance.author = Author.objects.first()
         return super().form_valid(form)
 
-    # def get_success_url(self):
-    #     return reverse('news')
+    def get_success_url(self):
+        return reverse('meals_list')
 
 
 

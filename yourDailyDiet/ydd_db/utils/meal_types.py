@@ -1,3 +1,4 @@
+from django.utils.translation import gettext
 
 MEAL_TYPES = (
     ('B', 'Breakfast'),
@@ -6,3 +7,11 @@ MEAL_TYPES = (
     ('S', 'Snack'),
     ('O', 'Other'),
 )
+
+MEAL_TYPES_DICT = {
+    'B': gettext('Breakfast'),
+    'L': gettext('Lunch'),
+    'D': gettext('Dinner'),
+    'S': gettext('Snack'),
+    'O': gettext('Other'),
+}

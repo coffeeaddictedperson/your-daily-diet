@@ -7,5 +7,8 @@ def meals_list(request):
     return render(
         request=request,
         template_name='meals_list_page.html',
-        context={'meals_data': data, 'user': request.user}
+        context={
+            'meals_data': data,
+            'user': request.user
+        }
     )

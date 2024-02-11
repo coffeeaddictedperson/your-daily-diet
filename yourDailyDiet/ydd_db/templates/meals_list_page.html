@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load meal_type_stringifier %}
 
 {% block content %}
     <h1>{% translate "Meals" %}</h1>
 
     <ul>
-    {% for meal in meals_data %}
+        {% for meal in meals_data %}
         <li>
-            <h4>{{ meal.name }}</h4>
-            <p>{{ meal.description }}</p>
+            <h4>{{ meal.name }}
+                {% if meal.is_vegetarian %}
+                <span class="fa-solid fa-leaf color-secondary"></span>
+                {% endif %}
+            </h4>
+            <p>
+                {{ meal.description }}<br />
+                <sub>{% translate "Suggested time:"%} {{ meal.meal_type|meal_type_stringifier }}</sub>
+            </p>
 
         </li>
         {% endfor %}

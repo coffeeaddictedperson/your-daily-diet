@@ -2,7 +2,7 @@
 
 {% load static %}
 
-<html lang="uk">
+<html lang="en">
 <head>
     {% load i18n %}
     <title>{% translate "Your Daily Diet (YDD)" %}</title>
@@ -14,8 +14,10 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static 'css/typography.css' %}?{% now 'U' %}">
+
+    <script src="https://kit.fontawesome.com/9d369a0696.js" crossorigin="anonymous"></script>
 
 
 </head>

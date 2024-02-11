@@ -1,5 +1,23 @@
+:root {
+    --color-primary: #397367;
+    --color-secondary: #42858C;
+    --text-color: #35393C;
+    /*--color2: #63CCCA;*/
+    /*--color3: #5DA399;*/
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* Colors */
+body {
+    color: var(--text-color);
+}
+.color-primary {
+    color: var(--color-primary);
+}
+.color-secondary {
+    color: var(--color-secondary);
 }
