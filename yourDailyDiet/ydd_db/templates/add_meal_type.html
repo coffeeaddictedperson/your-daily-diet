@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <section class="form-centered">
+        <div class="form-content">
+
+            <h3>{% translate "Add new meal" %}</h3>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {{ form.as_div }}
+
+                <div class="default-margin-top">
+                    <button type="submit" class="btn btn-primary">{% translate "Save type" %}</button>
+                    <a href="{% url 'meal_types' %}" class="btn btn-secondary">{% translate "Cancel" %}</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -7,30 +7,31 @@
 
     <div class="container">
 
-    {% for meal in meals_data %}
-    <div class="card default-margin-y">
-        <div class="card-body">
-            <h4 class="meal-header">
-                {{ meal.name }}
-                {% if meal.is_vegetarian %}
-                <span class="fa-solid fa-leaf color-secondary"></span>
-                {% endif %}
+        {% for meal in meals_data %}
+        <div class="card default-margin-y">
+            <div class="card-body">
+                <h4 class="meal-header">
+                    {{ meal.name }}
+                    {% if meal.is_vegetarian %}
+                    <span class="fa-solid fa-leaf color-secondary"></span>
+                    {% endif %}
 
-                <span class="meal-type"><span class="fa-solid fa-bowl-food"></span> {{ meal.meal_type|meal_type_stringifier }}</span>
-            </h4>
-            <div class="details">
-                {{ meal.description }}
-            </div>
-            <div class="default-margin-top">
-                <a class="btn btn-secondary btn-sm" href="{% url 'delete_meal' pk=meal.id %}">
-                    {% translate "Delete" %}
-                </a>
-                <a class="btn btn-secondary btn-sm" href="{% url 'update_meal' pk=meal.id %}">
-                    {% translate "Update" %}
-                </a>
+                    <span class="meal-type"><span class="fa-solid fa-bowl-food"></span> {{ meal.meal_type|meal_type_stringifier }}</span>
+                </h4>
+                <div class="details">
+                    {{ meal.description }}
+                </div>
+                <div class="default-margin-top">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'delete_meal' pk=meal.id %}">
+                        {% translate "Delete" %}
+                    </a>
+                    <a class="btn btn-secondary btn-sm" href="{% url 'update_meal' pk=meal.id %}">
+                        {% translate "Update" %}
+                    </a>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 
 {% endblock %}

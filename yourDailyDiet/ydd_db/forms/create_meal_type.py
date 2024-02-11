@@ -1,16 +1,16 @@
 from django import forms
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Column, Row, Submit
+from crispy_forms.layout import Layout, Column, Row
 
-from .meal_labels import LABELS, WARNINGS
-from ..models.meal import Meal
+from .meal_type_labels import LABELS, WARNINGS
+from ..models.meal_type import MealType
 
 
-class CreateNewMeal(forms.ModelForm):
+class CreateNewMealType(forms.ModelForm):
     class Meta:
-        model = Meal
-        fields = ['name', 'description', 'meal_type', 'is_vegetarian']
+        model = MealType
+        fields = ['name', 'description']
         labels = LABELS
         error_messages = WARNINGS
         widgets = {
@@ -24,9 +24,5 @@ class CreateNewMeal(forms.ModelForm):
             Column(
                 Row('name', css_class='form-group'),
                 Row('description', css_class='form-group col-md-6'),
-                Row(
-                    Column('meal_type', css_class='form col-md-6'),
-                    Column('is_vegetarian', css_class='form col-md-6')
-                ),
             )
         )

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1 class="align-center">{% translate "Meal types" %} ({{ types_data|length}})</h1>
+
+    <div class="container">
+
+        {% for type in types_data %}
+        <div class="card default-margin-y">
+            <div class="card-body">
+                <h4 class="meal-header">
+                    {{ type.name }}
+                </h4>
+                <div class="details">
+                    {{ type.description }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
