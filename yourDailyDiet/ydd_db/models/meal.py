@@ -11,7 +11,9 @@ class Meal(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=255)
     meal_type = models.CharField(max_length=1, choices=MEAL_TYPES,
-                                 default='D', blank=False, null=False)
+                                 default='D', blank=True, null=True)
+    type = models.ForeignKey('MealType', on_delete=models.CASCADE, null=True,
+                             blank=True)
     is_vegetarian = models.BooleanField()
 
     def __str__(self):
