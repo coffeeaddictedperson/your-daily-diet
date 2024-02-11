@@ -3,23 +3,29 @@
 {% load meal_type_stringifier %}
 
 {% block content %}
-    <h1>{% translate "Meals" %}</h1>
+    <h1 class="align-center">{% translate "Meals" %} ({{ meals_data|length}})</h1>
 
-    <ul>
-        {% for meal in meals_data %}
-        <li>
-            <h4>{{ meal.name }}
+    <div class="container">
+
+    {% for meal in meals_data %}
+    <div class="card default-margin-y">
+        <div class="card-body">
+            <h4 class="meal-header">
+                {{ meal.name }}
                 {% if meal.is_vegetarian %}
                 <span class="fa-solid fa-leaf color-secondary"></span>
                 {% endif %}
+
+                <span class="meal-type"><span class="fa-solid fa-bowl-food"></span> {{ meal.meal_type|meal_type_stringifier }}</span>
             </h4>
-            <p>
-                {{ meal.description }}<br />
-                <sub>{% translate "Suggested time:"%} {{ meal.meal_type|meal_type_stringifier }}</sub>
-                <br />
-                <a href="{% url 'delete_meal' pk=meal.id %}">{% translate "Delete" %}</a>
-            </p>
-        </li>
-        {% endfor %}
-    </ul>
+            <div class="details">
+                {{ meal.description }}
+            </div>
+            <div class="default-margin-top">
+                <a class="btn btn-secondary" href="{% url 'delete_meal' pk=meal.id %}">{% translate "Delete" %}</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
 {% endblock %}
