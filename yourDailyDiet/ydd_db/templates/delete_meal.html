@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load meal_type_stringifier %}
+
+{% block content %}
+    <section class="form-centered">
+        <div class="form-content">
+
+            <h3> {% translate "Meal to delete:" %} "{{ meal.name}}"</h3>
+
+            <div class="details">
+                <p>{% translate "Meal ID:" %} {{ meal.id }}</p>
+                <p>{% translate "Meal description:" %} {{ meal.description }}</p>
+                <p>{% translate "Meal time:" %} {{ meal.meal_type|meal_type_stringifier }}
+                {% if meal.is_vegetarian %}
+                <br />{% translate "Vegetarian meal" %}
+                {% endif %}
+            </div>
+
+            <form action="" method="post">
+                <h6>{% translate "Are you sure that you want to delete the meal?" %}</h6>
+                {% csrf_token %}
+
+                <div class="default-margin-y">
+                    <input type="submit" class="btn btn-danger" value="{% translate 'Delete' %}">
+                    <a href="{% url 'meals_list' %}" class="btn btn-secondary">{% translate "Cancel" %}</a>
+                </div>
+
+                <div class="alert alert-warning" role="alert">
+                  {% translate "This action can not be undone" %}
+                </div>
+            </form>
+         </div>
+    </section>
+{% endblock %}

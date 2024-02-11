@@ -16,8 +16,9 @@
             <p>
                 {{ meal.description }}<br />
                 <sub>{% translate "Suggested time:"%} {{ meal.meal_type|meal_type_stringifier }}</sub>
+                <br />
+                <a href="{% url 'delete_meal' pk=meal.id %}">{% translate "Delete" %}</a>
             </p>
-
         </li>
         {% endfor %}
     </ul>

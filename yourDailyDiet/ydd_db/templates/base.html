@@ -16,32 +16,44 @@
 
     <link rel="stylesheet" href="{% static 'css/base.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static 'css/typography.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'css/page.css' %}?{% now 'U' %}">
 
     <script src="https://kit.fontawesome.com/9d369a0696.js" crossorigin="anonymous"></script>
 
 
 </head>
 <body>
+    <div class="page-wrapper">
+        {% block header %}
+            <header class="header">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a href="#" class="navbar-brand">{% translate "Your Daily Meal" %}</a>
+                    <button class="navbar-toggler" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarToggler"
+                            aria-controls="navbarToggler"
+                            aria-expanded="false" aria-label="{% translate 'Toggle navigation' %}">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
 
-    {% block header %}
-        <header>
-            <a href="{% url 'main' %}">{% translate "YDD page" %}</a>
-            |
-            <a href="{% url 'meals_list' %}">{% translate "All meals" %}</a>
-            |
-            <a href="{% url 'add_meal' %}">{% translate "Add meal" %}</a>
-        </header>
-    {% endblock %}
-
-    <main>
-        {% block content %}
+                    <div class="collapse navbar-collapse" id="navbarToggler">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a href="{% url 'meals_list' %}" class="nav-link">{% translate "All meals" %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'add_meal' %}" class="nav-link">{% translate "Add meal" %}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
         {% endblock %}
-    </main>
 
-    {% block footer %}
-        <footer>
-            <h4>Todo: I am footer</h4>
-        </footer>
-    {% endblock %}
+        <main class="main">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
 </body>
 </html>

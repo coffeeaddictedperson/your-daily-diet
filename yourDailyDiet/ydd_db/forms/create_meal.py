@@ -14,7 +14,7 @@ class CreateNewMeal(forms.ModelForm):
         labels = {
             'name': gettext('Meal'),
             'description': gettext('Short description'),
-            'meal_type': gettext('Type of meal'),
+            'meal_type': gettext('Better for...'),
             'is_vegetarian': gettext('Vegetarian?')
         }
         error_messages = {
@@ -23,7 +23,7 @@ class CreateNewMeal(forms.ModelForm):
             }
         }
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 3}),
+            'description': forms.Textarea(attrs={'rows': 5}),
         }
 
     def __init__(self, *args, **kwargs):

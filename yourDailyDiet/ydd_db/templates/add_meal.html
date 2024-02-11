@@ -2,10 +2,20 @@
 {% load i18n %}
 
 {% block content %}
-    <h1>{% translate "Add new meal" %}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">{% translate "Save meal" %}</button>
-    </form>
+    <section class="form-centered">
+        <div class="form-content">
+
+            <h3>{% translate "Add new meal" %}</h3>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {{ form.as_div }}
+
+                <div class="default-margin-top">
+                    <button type="submit" class="btn btn-primary">{% translate "Save meal" %}</button>
+                </div>
+            </form>
+        </div>
+    </section>
 {% endblock %}
