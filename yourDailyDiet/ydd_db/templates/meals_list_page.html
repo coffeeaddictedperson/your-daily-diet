@@ -22,7 +22,12 @@
                 {{ meal.description }}
             </div>
             <div class="default-margin-top">
-                <a class="btn btn-secondary" href="{% url 'delete_meal' pk=meal.id %}">{% translate "Delete" %}</a>
+                <a class="btn btn-secondary btn-sm" href="{% url 'delete_meal' pk=meal.id %}">
+                    {% translate "Delete" %}
+                </a>
+                <a class="btn btn-secondary btn-sm" href="{% url 'update_meal' pk=meal.id %}">
+                    {% translate "Update" %}
+                </a>
             </div>
         </div>
     </div>
