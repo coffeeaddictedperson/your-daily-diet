@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 
-from .utils.meal_types import MEAL_TYPES
+from ..utils.meal_types import MEAL_TYPES
 
 
 class Meal(models.Model):

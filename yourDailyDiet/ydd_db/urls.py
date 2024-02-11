@@ -1,8 +1,9 @@
 from django.urls import path
 
-from . import views
+from .views.main_page import main_page
+from .views.create_meal import CreateNewMealView
 
 urlpatterns = [
-    path("", views.main_page, name="main"),
-    path('add-meal/',  views.CreateNewMealView.as_view(),  name='add_meal'),
+    path("", main_page, name="main"),
+    path('add-meal/',  CreateNewMealView.as_view(),  name='add_meal'),
 ]

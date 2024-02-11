@@ -1,17 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 
-from .models import Meal
-from .forms import CreateNewMeal
-
-
-# Create your views here.
-def main_page(request):
-    return render(
-        request=request,
-        template_name='main_page.html',
-        context={'name': request.user.username}
-    )
+from ..models.meal import Meal
+from ..forms.create_meal import CreateNewMeal
 
 
 class CreateNewMealView(CreateView):
@@ -25,4 +16,6 @@ class CreateNewMealView(CreateView):
 
     # def get_success_url(self):
     #     return reverse('news')
+
+
 

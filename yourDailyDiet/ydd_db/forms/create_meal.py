@@ -4,7 +4,8 @@ from django.utils.translation import gettext
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Row, Submit
 
-from .models import Meal
+from ..models.meal import Meal
+
 
 class CreateNewMeal(forms.ModelForm):
     class Meta:
@@ -20,6 +21,9 @@ class CreateNewMeal(forms.ModelForm):
             'meal_name': {
                 'max_length': "This meal's name is too long."
             }
+        }
+        widgets = {
+            'meal_description': forms.Textarea(attrs={'rows': 3}),
         }
 
     def __init__(self, *args, **kwargs):
