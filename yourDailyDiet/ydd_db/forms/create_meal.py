@@ -10,20 +10,20 @@ from ..models.meal import Meal
 class CreateNewMeal(forms.ModelForm):
     class Meta:
         model = Meal
-        fields = ['meal_name', 'meal_description', 'meal_type', 'is_vegetarian']
+        fields = ['name', 'description', 'meal_type', 'is_vegetarian']
         labels = {
-            'meal_name': gettext('Meal'),
-            'meal_description': gettext('Short description'),
+            'name': gettext('Meal'),
+            'description': gettext('Short description'),
             'meal_type': gettext('Type of meal'),
             'is_vegetarian': gettext('Vegetarian?')
         }
         error_messages = {
-            'meal_name': {
+            'name': {
                 'max_length': "This meal's name is too long."
             }
         }
         widgets = {
-            'meal_description': forms.Textarea(attrs={'rows': 3}),
+            'description': forms.Textarea(attrs={'rows': 3}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -31,8 +31,8 @@ class CreateNewMeal(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Column(
-                Row('meal_name', css_class='form-group'),
-                Row('meal_description', css_class='form-group col-md-6'),
+                Row('name', css_class='form-group'),
+                Row('description', css_class='form-group col-md-6'),
                 Row(
                     Column('meal_type', css_class='form'),
                     Column('is_vegetarian', css_class='form')

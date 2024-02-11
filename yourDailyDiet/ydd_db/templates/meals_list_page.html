@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1>{% translate "Meals" %}</h1>
+
+    <ul>
+    {% for meal in meals_data %}
+        <li>
+            <h4>{{ meal.name }}</h4>
+            <p>{{ meal.description }}</p>
+
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
