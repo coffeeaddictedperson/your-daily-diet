@@ -9,6 +9,7 @@ class CreateNewMealTypeView(CreateView):
     model = MealType
     form_class = CreateNewMealType
     template_name = 'add_meal_type.html'
+    permission_required = 'ydd_db.add_mealtype'
 
     def form_valid(self, form):
         return super().form_valid(form)

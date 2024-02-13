@@ -43,7 +43,7 @@
                             <li class="nav-item">
                                 <a href="{% url 'meals_list' %}" class="nav-link">{% translate "All meals" %}</a>
                             </li>
-                            {% if user.is_authenticated %}
+                            {% if perms.ydd_db.add_meal %}
                             <li class="nav-item">
                                 <a href="{% url 'add_meal' %}" class="nav-link">{% translate "Add meal" %}</a>
                             </li>
@@ -51,7 +51,7 @@
                             <li class="nav-item">
                                 <a href="{% url 'meal_types' %}" class="nav-link">{% translate "Meal types" %}</a>
                             </li>
-                            {% if user.is_authenticated %}
+                            {% if perms.ydd_db.add_mealtype %}
                             <li class="nav-item">
                                 <a href="{% url 'add_meal_type' %}" class="nav-link">{% translate "Add meal type" %}</a>
                             </li>
