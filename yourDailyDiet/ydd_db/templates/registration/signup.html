@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <section class="form-centered">
+        <div class="form-content">
+            <h3>{% translate "Sign up" %}</h3>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {{ form.as_div }}
+
+                <div class="default-margin-top">
+                    <button type="submit" class="btn btn-primary">{% translate "Sign up" %}</button>
+                    <a href="{% url 'main_page' %}" class="btn btn-secondary">{% translate "Cancel" %}</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -21,7 +21,7 @@ html, body {
     z-index: 1;
 }
 .header {
-    z-index: 100;
+    z-index: 1000;
     position: relative;
     flex-grow: 0;
     flex-shrink: 0;
@@ -30,8 +30,16 @@ html, body {
     text-align: center;
 }
 
-.main {
+.footer-content {
+    position: relative;
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    border-top: var(--color-border) 1px solid;
+}
+
+.main {
+    z-index: 100;
     position: relative;
     flex-grow: 1;
     overflow: auto;

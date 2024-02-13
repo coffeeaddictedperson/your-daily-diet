@@ -27,7 +27,8 @@
         {% block header %}
             <header class="header">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a href="#" class="navbar-brand">{% translate "Your Daily Meal" %}</a>
+                    <a href="{% url 'main_page' %}" class="navbar-brand">{% translate "Your Daily Meal" %}</a>
+
                     <button class="navbar-toggler" type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#navbarToggler"
@@ -36,22 +37,28 @@
                       <span class="navbar-toggler-icon"></span>
                     </button>
 
+
                     <div class="collapse navbar-collapse" id="navbarToggler">
-                        <ul class="navbar-nav mr-auto">
+                        <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a href="{% url 'meals_list' %}" class="nav-link">{% translate "All meals" %}</a>
                             </li>
+                            {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <a href="{% url 'add_meal' %}" class="nav-link">{% translate "Add meal" %}</a>
                             </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a href="{% url 'meal_types' %}" class="nav-link">{% translate "Meal types" %}</a>
                             </li>
+                            {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <a href="{% url 'add_meal_type' %}" class="nav-link">{% translate "Add meal type" %}</a>
                             </li>
+                            {% endif %}
                         </ul>
                     </div>
+
                 </nav>
             </header>
         {% endblock %}
@@ -60,6 +67,20 @@
             {% block content %}
             {% endblock %}
         </main>
+
+        {% block footer %}
+            <footer class="footer">
+                <div class="footer-content">
+                    {% if not user.is_authenticated %}
+                    <a href="{% url 'login' %}" class="nav-link">{% translate "Login" %}</a>
+                    <a href="{% url 'signup' %}" class="nav-link">{% translate "Sign up" %}</a>
+                    {% else %}
+                    <span class="navbar-text">{% translate "Hello, " %}{{ user }}</span>
+                    <a href="{% url 'logout' %}" class="nav-link">{% translate "Logout" %}</a>
+                    {% endif %}
+                </div>
+            </footer>
+        {% endblock %}
     </div>
 </body>
 </html>
