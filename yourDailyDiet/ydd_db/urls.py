@@ -1,4 +1,7 @@
-from django.urls import path
+from django.urls import path, re_path
+
+from .api.get_meal_types import get_meal_types
+from .api.get_meal import get_random_meal
 
 from .views.registration import user_login, user_logout, user_signup
 
@@ -10,6 +13,7 @@ from .views.meals_list import meals_list
 
 from .views.create_meal_type import CreateNewMealTypeView
 from .views.meal_types import meal_types
+
 
 urlpatterns = [
     path('login/', user_login, name='login'),
@@ -27,4 +31,8 @@ urlpatterns = [
 
     path('meal-types/', meal_types, name='meal_types'),
     path('meal-types/add', CreateNewMealTypeView.as_view(),  name='add_meal_type'),
+
+    # API
+    path(r"api/meal-types", get_meal_types, name='get_meal_types'),
+    re_path(r"api/meal(?P<type>[\w]+)?/$", get_random_meal, name='get_meal'),
 ]
