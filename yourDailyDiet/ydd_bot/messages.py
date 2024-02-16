@@ -11,3 +11,5 @@ BTN_BREAKFAST = 'Breakfast'
 BTN_DINNER = 'Dinner'
 BTN_SNACK = 'Snack'
 
+UNKNOWN_COMMAND_MESSAGE = ('Sorry, I do not understand you. Please use the '
+                           'command /start to begin.')
