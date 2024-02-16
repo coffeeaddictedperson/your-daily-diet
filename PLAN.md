@@ -14,14 +14,10 @@
 2. Different users - admins, users, paid users?, editors
 3. Grant editor permissions (or Send admin request if user ask for editor permissions ? 
 
+1. Add test coverage
+2. Add presentation
+3. Record demo
 
 CSS/HTML
 1. Some nicer view for meals
 2. Add some nice icons ?
-
-
-LOCALIZATION for Meals
-1. Add localization for meals
-2. Show list with available languages
-3. Show un-trunslated meals
-4. Allow to translate meal
