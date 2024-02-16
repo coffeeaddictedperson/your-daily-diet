@@ -7,8 +7,7 @@
 
 WELCOME_MESSAGE = "Welcome to Your Daily Diet Bot!"
 
-BTN_BREAKFAST = 'breakfast'
+BTN_BREAKFAST = 'Breakfast'
+BTN_DINNER = 'Dinner'
+BTN_SNACK = 'Snack'
 
-BTN_SNACK = 'snack'
-
-BTN_DINNER = 'dinner'
