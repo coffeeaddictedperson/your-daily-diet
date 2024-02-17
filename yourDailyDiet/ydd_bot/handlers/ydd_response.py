@@ -27,70 +27,51 @@ async def process_start_command(message: Message):
     )
 
 
-# Login user
-# @private channel only,
-# @accept "/login", "login" (case in-sensitive)
-@router.message(
-    ChatTypeFilter(chat_type=["private"]),
-    FormattedCommandFilter(['/login']),
-)
-async def process_login_command(message: Message):
-    print('Private chat: received /login command')
-    status = await BotUser.verify_user_id(message)
-
-    if status == USER_NOT_FOUND:
-        await message.answer(
-            MESSAGES['user_not_found'],
-            reply_markup=get_keyboard(USER_NOT_FOUND)
-        )
-    else:
-        await message.answer(
-            MESSAGES['login_successful'],
-            reply_markup=get_keyboard(LOGGED_USER)
-        )
-
-
-# Sign up user
-# @private channel only,
-# @accept "/sign up", "signup" (case in-sensitive)
-@router.message(
-    ChatTypeFilter(chat_type=["private"]),
-    FormattedCommandFilter(['/signup']),
-)
-async def process_signup_command(message: Message):
-    print('Private chat: received /signup command')
-    status = await BotUser.signup_user(message)
-
-    if status == USER_ALREADY_EXIST:
-        await message.answer(
-            MESSAGES['user_not_found'],
-            reply_markup=get_keyboard(USER_NOT_FOUND)
-        )
-    else:
-        await message.answer(
-            MESSAGES['signup_successful'],
-            reply_markup=get_keyboard(LOGGED_USER)
-        )
-
-
-#
-# @router.con(
-#     ChatTypeFilter(chat_type=["private"]),
-#
-# @dp.message_handler(content_types=types.ContentType.CONTACT, state=Form.contacts)
-# async def contacts(message: types.Message, state: FSMContext):
-# await message.answer(f"Ваш номер: {message.contact.phone_number}", reply_markup=types.ReplyKeyboardRemove())
-# await state.finish()
-
-#
-# # logout command for admins, private channel only
+# # Login user
+# # @private channel only,
+# # @accept "/login", "login" (case in-sensitive)
 # @router.message(
 #     ChatTypeFilter(chat_type=["private"]),
-#     Command(commands=["logout"]),
+#     FormattedCommandFilter(['/login']),
 # )
-# async def process_logout_command(message: Message):
-#     print('Private chat: received /logout command')
-#     await message.answer(MESSAGES[LOGOUT], reply_markup=get_keyboard())
+# async def process_login_command(message: Message):
+#     print('Private chat: received /login command')
+#     status = await BotUser.verify_user_id(message)
+#
+#     if status == USER_NOT_FOUND:
+#         await message.answer(
+#             MESSAGES['user_not_found'],
+#             reply_markup=get_keyboard(USER_NOT_FOUND)
+#         )
+#     else:
+#         await message.answer(
+#             MESSAGES['login_successful'],
+#             reply_markup=get_keyboard(LOGGED_USER)
+#         )
+
+
+# # Sign up user
+# # @private channel only,
+# # @accept "/sign up", "signup" (case in-sensitive)
+# @router.message(
+#     ChatTypeFilter(chat_type=["private"]),
+#     FormattedCommandFilter(['/signup']),
+# )
+# async def process_signup_command(message: Message):
+#     print('Private chat: received /signup command')
+#     status = await BotUser.signup_user(message)
+#
+#     if status == USER_ALREADY_EXIST:
+#         await message.answer(
+#             MESSAGES['user_not_found'],
+#             reply_markup=get_keyboard(USER_NOT_FOUND)
+#         )
+#     else:
+#         await message.answer(
+#             MESSAGES['signup_successful'],
+#             reply_markup=get_keyboard(LOGGED_USER)
+#         )
+
 
 # Get your meal command, private channel only
 @router.message(
@@ -122,9 +103,9 @@ async def process_ydd_command(query: CallbackQuery, callback_data: YDDCallback):
 # Non of the above commands are matched: show warning message
 @router.message()
 async def process_echo(message: Message):
-    if message.contact is not None:
-        ...
-
-        await message.answer(f"You logged in successfully")
-    else:
+    # if message.contact is not None:
+    #     # ...
+    #     #
+    #     # await message.answer(f"You logged in successfully")
+    # else:
         await message.answer(UNKNOWN_COMMAND_MESSAGE)
