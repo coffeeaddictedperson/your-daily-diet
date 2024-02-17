@@ -27,5 +27,3 @@ async def get_random_meal(meal_type: str = None):
                 return response.get('meal')
     except Exception as e:
         return None
-
-

@@ -17,6 +17,7 @@
 3. Grant editor permissions (or Send admin request if user ask for editor permissions ? 
 
 1. Add test coverage
+2. Replace print with logging
 2. Add presentation
 3. Record demo
 

@@ -1,5 +1,6 @@
 from django.urls import path, re_path
 
+from .api.bot_user import BotUserAPI
 from .api.get_meal_types import get_meal_types
 from .api.get_meal import get_random_meal
 
@@ -35,4 +36,10 @@ urlpatterns = [
     # API
     path(r"api/meal-types", get_meal_types, name='get_meal_types'),
     re_path(r"api/meal(?P<type>[\w]+)?/$", get_random_meal, name='get_meal'),
+
+    path('api/bot-user/login/<user_id>', BotUserAPI.login_bot_user,  name='login_bot_user'),
+    path('api/bot-user/logout/<user_id>', BotUserAPI.login_bot_user,
+         name='logout_bot_user'),
+    path('api/bot-user/delete/<user_id>', BotUserAPI.delete_bot_user,
+         name='delete_bot_user'),
 ]
