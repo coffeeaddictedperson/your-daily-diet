@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from ..models.telegram_user import BotUser
 
 STATUS_OK = "ok"
+STATUS_ERROR = "error"
 
 USER_LOGGED_IN = "logged_in"
 USER_LOGGED_OUT = "logged_out"
@@ -68,11 +69,29 @@ class BotUserAPI:
 
 
     @staticmethod
-    def create_bot_user(request, user_id, username):
+    def create_bot_user(request):
+
+
+
+        print('>>>>create_bot_user', request.POST)
+        # if request.method == 'POST':
+        #     user_id = request.POST.get('user_id')
+        #     username = request.POST.get('username')
+        #     print('>>>>create_bot_user >>> ', user_id, username)
+        #
+        #     # return JsonResponse({
+        #     #     "status": STATUS_OK,
+        #     #     "user_status": BotUserAPI._create_user(user_id, username)
+        #     # }, safe=False)
+
+        # return JsonResponse({
+        #     "status": STATUS_ERROR,
+        #     "message": "Invalid request method. Use POST method."
+        # }, safe=False)
         return JsonResponse({
-            "status": STATUS_OK,
-            "user_status": BotUserAPI._create_user(user_id, username)
-        }, safe=False)
+                "status": STATUS_OK,
+                "user_status": 'wtf'
+            }, safe=False)
 
     @staticmethod
     def delete_bot_user():

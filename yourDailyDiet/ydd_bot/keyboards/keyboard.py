@@ -1,4 +1,6 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton,
+                           InlineKeyboardButton, InlineKeyboardMarkup)
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from messages import BUTTONS, USER_NOT_FOUND, LOGGED_USER
 
@@ -7,7 +9,7 @@ SHARE_PHONE_TO_LOGIN = 'Share phone to login'
 SHARE_PHONE_TO_SIGNUP = 'Share phone to signup'
 
 
-def get_keyboard(state=None) -> ReplyKeyboardMarkup:
+def get_keyboard(state=None):
     if state == USER_NOT_FOUND:
         return ReplyKeyboardMarkup(
             keyboard=[[
@@ -21,8 +23,6 @@ def get_keyboard(state=None) -> ReplyKeyboardMarkup:
                 KeyboardButton(text=BUTTONS['logout'])
             ]])
 
-    return ReplyKeyboardMarkup(
-        keyboard=[[
-            KeyboardButton(text=BUTTONS['get_your_meal']),
-            KeyboardButton(text=BUTTONS['login'])
-        ]])
+    builder = InlineKeyboardBuilder()
+    builder.add(InlineKeyboardButton(text=BUTTONS['login'], callback_data="random_value"))
+    return builder.as_markup()

@@ -14,7 +14,8 @@ class FormattedCommandFilter(BaseFilter):
     def format_command(command: str) -> str:
         return (command.strip().lower()
                 .replace('/', '')
-                .replace('-', ''))
+                .replace('-', '')
+                .replace(' ', ''))
 
     async def __call__(self, message: Message) -> bool:
         return FormattedCommandFilter.format_command(

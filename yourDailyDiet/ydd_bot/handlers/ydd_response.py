@@ -9,7 +9,7 @@ from handlers.call_api import get_meal_types, get_random_meal
 from handlers.call_user_api import BotUser
 
 from messages import (WELCOME_MESSAGE, UNKNOWN_COMMAND_MESSAGE,
-                      MESSAGES, LOGGED_USER, USER_NOT_FOUND)
+                      MESSAGES, LOGGED_USER, USER_NOT_FOUND, USER_ALREADY_EXIST)
 from keyboards.inline_keyboard import get_meal_types_keyboard, YDDCallback
 from keyboards.keyboard import get_keyboard, GET_YOUR_MEAL
 
@@ -36,7 +36,7 @@ async def process_start_command(message: Message):
 )
 async def process_login_command(message: Message):
     print('Private chat: received /login command')
-    status = await BotUser.login_user(message)
+    status = await BotUser.verify_user_id(message)
 
     if status == USER_NOT_FOUND:
         await message.answer(
@@ -49,6 +49,48 @@ async def process_login_command(message: Message):
             reply_markup=get_keyboard(LOGGED_USER)
         )
 
+
+# Sign up user
+# @private channel only,
+# @accept "/sign up", "signup" (case in-sensitive)
+@router.message(
+    ChatTypeFilter(chat_type=["private"]),
+    FormattedCommandFilter(['/signup']),
+)
+async def process_signup_command(message: Message):
+    print('Private chat: received /signup command')
+    status = await BotUser.signup_user(message)
+
+    if status == USER_ALREADY_EXIST:
+        await message.answer(
+            MESSAGES['user_not_found'],
+            reply_markup=get_keyboard(USER_NOT_FOUND)
+        )
+    else:
+        await message.answer(
+            MESSAGES['signup_successful'],
+            reply_markup=get_keyboard(LOGGED_USER)
+        )
+
+
+#
+# @router.con(
+#     ChatTypeFilter(chat_type=["private"]),
+#
+# @dp.message_handler(content_types=types.ContentType.CONTACT, state=Form.contacts)
+# async def contacts(message: types.Message, state: FSMContext):
+# await message.answer(f"Ваш номер: {message.contact.phone_number}", reply_markup=types.ReplyKeyboardRemove())
+# await state.finish()
+
+#
+# # logout command for admins, private channel only
+# @router.message(
+#     ChatTypeFilter(chat_type=["private"]),
+#     Command(commands=["logout"]),
+# )
+# async def process_logout_command(message: Message):
+#     print('Private chat: received /logout command')
+#     await message.answer(MESSAGES[LOGOUT], reply_markup=get_keyboard())
 
 # Get your meal command, private channel only
 @router.message(

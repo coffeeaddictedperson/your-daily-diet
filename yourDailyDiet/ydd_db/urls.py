@@ -37,6 +37,8 @@ urlpatterns = [
     path(r"api/meal-types", get_meal_types, name='get_meal_types'),
     re_path(r"api/meal(?P<type>[\w]+)?/$", get_random_meal, name='get_meal'),
 
+    path('api/bot-user/sign-up/', BotUserAPI.create_bot_user,
+         name='create_bot_user'),
     path('api/bot-user/login/<user_id>', BotUserAPI.login_bot_user,  name='login_bot_user'),
     path('api/bot-user/logout/<user_id>', BotUserAPI.login_bot_user,
          name='logout_bot_user'),
