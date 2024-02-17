@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <section class="form-centered">
+        <div class="form-content">
+            <h3>{% translate "Username: " %}{{ user.username }}</h3>
+            <ul>
+                <li>{% translate "Registered: " %}{{ user.date_joined }}</li>
+                <li>{% translate "Last login: " %}{{ user.last_login }}</li>
+            </ul>
+
+            <h3>{% translate "Integration with telegram bot" %}</h3>
+            <ul>
+                <li>{% translate "Telegram username: " %}{{ user.bot_username }}</li>
+                <li>{% translate "Telegram user id: " %}{{ user.bot_user_id }}</li>
+                <li>{% translate "Registered bot first time: " %}{{ user.bot_created_at }}</li>
+                <li>{% translate "Last time updated code: " %}{{ user.bot_updated_at }}</li>
+                <li>{% translate "Code valid till: " %}{{ user.code_expired_date }}</li>
+                <li>{% translate "Is expired: " %}{{ user.is_past_due }}</li>
+                <li>{% translate "Code: " %}{{ user.bot_code }}</li>
+            </ul>
+
+
+            <form method="post">
+                {% csrf_token %}
+
+                {{ form.as_div }}
+
+
+                <div class="default-margin-top">
+                    <button type="submit" class="btn btn-primary">{% translate "Generate new code" %}</button>
+                    <a href="{% url 'profile' %}" class="btn btn-secondary">{% translate "Cancel" %}</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

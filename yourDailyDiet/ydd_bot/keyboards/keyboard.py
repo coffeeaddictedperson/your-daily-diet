@@ -1,7 +1,7 @@
 import os
 
 from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton,
-                           InlineKeyboardButton, LoginUrl)
+                           InlineKeyboardButton, LoginUrl, Message)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from messages import BUTTONS, USER_NOT_FOUND, LOGGED_USER
@@ -11,15 +11,36 @@ SHARE_PHONE_TO_LOGIN = 'Share phone to login'
 SHARE_PHONE_TO_SIGNUP = 'Share phone to signup'
 
 request_url = os.getenv('SERVER_ROUTE')
-login_view_route = 'https://127.0.0.1/login/'
+signup_view_route = f'{request_url}/signup/'
+login_view_route = f'{request_url}/login/'
 
 
-def get_keyboard(state=None):
-    return ReplyKeyboardMarkup(
-        keyboard=[[
-            KeyboardButton(text=BUTTONS['get_your_meal']),
-        ]])
+def get_keyboard(message: Message = None):
+    user_id = message.from_user.id
+    username = message.from_user.username
 
+    # Check if user id exist in the database
+    # Yes - check last time logged in
+    # if more the 24 hours - return keyboard with login
+    # return keyboard with get_your_meal
+    # No - return keyboard with sign_up
+
+    # return ReplyKeyboardMarkup(
+    #     keyboard=[[
+    #         KeyboardButton(text=BUTTONS['get_your_meal']),
+    #     ]])
+
+    signup_url = LoginUrl(
+        url=f'{signup_view_route}?username={username}&userid={user_id}',
+        forward_text='forward_text',
+        bot_username='@YourDailyDietAssistantBot',
+    )
+
+    builder = InlineKeyboardBuilder()
+    builder.add(
+        InlineKeyboardButton(text=BUTTONS['sign_up'], login_url=signup_url)
+    )
+    return builder.as_markup()
 
 
     # This part requires real domain. was not be able to test it locally,

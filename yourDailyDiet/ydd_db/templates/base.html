@@ -75,7 +75,7 @@
                     <a href="{% url 'login' %}" class="nav-link">{% translate "Login" %}</a>
                     <a href="{% url 'signup' %}" class="nav-link">{% translate "Sign up" %}</a>
                     {% else %}
-                    <span class="navbar-text">{% translate "Hello, " %}{{ user }}</span>
+                    <a href="{% url 'profile' %}" class="nav-link">{% translate "Hello, " %}{{ user }}</a>
                     <a href="{% url 'logout' %}" class="nav-link">{% translate "Logout" %}</a>
                     {% endif %}
                 </div>

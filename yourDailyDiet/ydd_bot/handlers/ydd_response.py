@@ -23,7 +23,7 @@ router = Router()
 async def process_start_command(message: Message):
     await message.answer(
         WELCOME_MESSAGE,
-        reply_markup=get_keyboard()
+        reply_markup=get_keyboard(message)
     )
 
 
@@ -100,12 +100,8 @@ async def process_ydd_command(query: CallbackQuery, callback_data: YDDCallback):
         await query.message.answer(f'No meal found for {callback_data.value}. '
                                    f'Try again later.')
 
-# Non of the above commands are matched: show warning message
+# None of the above commands are matched: show warning message
 @router.message()
 async def process_echo(message: Message):
-    # if message.contact is not None:
-    #     # ...
-    #     #
-    #     # await message.answer(f"You logged in successfully")
-    # else:
-        await message.answer(UNKNOWN_COMMAND_MESSAGE)
+    print('Private chat: received unknown command')
+    await message.answer(UNKNOWN_COMMAND_MESSAGE)

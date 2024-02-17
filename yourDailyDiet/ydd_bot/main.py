@@ -2,7 +2,11 @@ import asyncio
 import os
 
 from aiogram import Bot, Dispatcher
+from aiogram.types import Update
+from django.http import HttpResponse
+
 from handlers import ydd_response
+
 
 
 async def main():

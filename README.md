@@ -28,3 +28,6 @@ https://scriptable.com/postgresql/how-to-install-postgresql-mac-docker/
 
 ### Creds
 `python manage.py runserver --settings=settings.local`
+
+### Create https certificate
+https://timonweb.com/django/https-django-development-server-ssl-certificate/
