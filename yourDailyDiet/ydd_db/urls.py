@@ -5,7 +5,7 @@ from .api.get_meal_types import get_meal_types
 from .api.get_meal import get_random_meal
 
 from .views.registration import (user_login, user_logout, user_signup,
-                                 user_profile)
+                                 user_profile, delete_integration, generate_new_code)
 
 from .views.create_meal import CreateNewMealView
 from .views.delete_meal import DeleteMealView
@@ -21,6 +21,11 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),
     path('signup/', user_signup, name='signup'),
     path('profile/', user_profile, name='profile'),
+
+    path('delete-integration/', delete_integration, name='delete_integration'),
+    path('generate-new-code/', generate_new_code, name='generate_new_code'),
+
+
 
 
     path('',  meals_list,  name='main_page'),

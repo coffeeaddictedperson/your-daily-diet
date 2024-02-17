@@ -10,29 +10,29 @@
                 <li>{% translate "Last login: " %}{{ user.last_login }}</li>
             </ul>
 
-            <h3>{% translate "Integration with telegram bot" %}</h3>
-            <ul>
-                <li>{% translate "Telegram username: " %}{{ user.bot_username }}</li>
-                <li>{% translate "Telegram user id: " %}{{ user.bot_user_id }}</li>
-                <li>{% translate "Registered bot first time: " %}{{ user.bot_created_at }}</li>
-                <li>{% translate "Last time updated code: " %}{{ user.bot_updated_at }}</li>
-                <li>{% translate "Code valid till: " %}{{ user.code_expired_date }}</li>
-                <li>{% translate "Is expired: " %}{{ user.is_past_due }}</li>
-                <li>{% translate "Code: " %}{{ user.bot_code }}</li>
-            </ul>
 
-
-            <form method="post">
-                {% csrf_token %}
-
-                {{ form.as_div }}
-
-
+            {% if bot_user.bot_username %}
+                <h3>{% translate "Integration with telegram bot" %}</h3>
+                <ul>
+                    <li>{% translate "Telegram username: " %}{{ bot_user.bot_username }}</li>
+                    <li>{% translate "Telegram user id: " %}{{ bot_user.bot_user_id }}</li>
+                    <li>{% translate "Registered bot first time: " %}{{ bot_user.bot_created_at }}</li>
+                    <li>{% translate "Last time updated code: " %}{{ bot_user.bot_updated_at }}</li>
+                    <li>{% translate "Code valid till: " %}{{ bot_user.bot_valid_till }}</li>
+                    <li>{% translate "Is expired: " %}{{ bot_user.is_still_valid }}</li>
+                    <li>{% translate "Code: " %}{{ bot_user.bot_code }}</li>
+                </ul>
                 <div class="default-margin-top">
-                    <button type="submit" class="btn btn-primary">{% translate "Generate new code" %}</button>
-                    <a href="{% url 'profile' %}" class="btn btn-secondary">{% translate "Cancel" %}</a>
+                    <a href="{% url 'generate_new_code' %}" class="btn btn-primary">{% translate "Generate new code" %}</a>
+                    <a href="{% url 'delete_integration' %}" class="btn btn-danger default-margin-left">{% translate "Delete integration" %}</a>
                 </div>
-            </form>
+            {% else %}
+                <h3>{% translate "Connect Your Daily Meal Bot" %}</h3>
+                <div class="default-margin-top">
+                    <img src="/static/images/android-chrome-192x192.png" width="86"/>
+                    <a href="https://telegram.me/YourDailyDietAssistantBot" target="_blank" class="btn btn-primary default-margin-left">{% translate "Connect" %}</a>
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

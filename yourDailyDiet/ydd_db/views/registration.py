@@ -31,18 +31,6 @@ def user_logout(request):
 def user_profile(request):
     bot_user = BotUserData.objects.filter(user=request.user).first()
 
-    # if request.method == 'POST':
-    #     form = LoginForm(request.POST)
-    #     if form.is_valid():
-    #         username = form.cleaned_data['username']
-    #         password = form.cleaned_data['password']
-    #         user = authenticate(request, username=username, password=password)
-    #         if user:
-    #             login(request, user)
-    #             return redirect('profile')
-    # else:
-    #     form = LoginForm()
-
     return render(
         request=request,
         template_name='registration/profile.html',
@@ -53,8 +41,15 @@ def user_profile(request):
         }
     )
 
+
+def delete_integration(request):
+    bot_user = BotUserData.objects.filter(user=request.user).first()
+    if bot_user:
+        bot_user.delete()
+    return redirect('profile')
+
+
 def create_bot_user(user, form):
-    print(form.cleaned_data)
     bot_username = form.cleaned_data['bot_username']
     bot_user_id = form.cleaned_data['bot_user_id']
 
@@ -62,10 +57,18 @@ def create_bot_user(user, form):
         bot_user = BotUserData.objects.create(
             user=user,
             bot_username=bot_username,
-            bot_user_id=bot_user_id
+            bot_user_id=bot_user_id,
         )
         bot_user.save()
+        bot_user.update_bot_code()
 
+
+@login_required(login_url='login')
+def generate_new_code(request):
+    bot_user = BotUserData.objects.filter(user=request.user).first()
+    if bot_user:
+        BotUserData.update_bot_code()
+    return redirect('profile')
 
 
 def user_signup(request):

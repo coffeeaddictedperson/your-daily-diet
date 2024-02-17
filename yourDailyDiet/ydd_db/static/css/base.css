@@ -44,3 +44,7 @@ body {
 .default-margin-top {
     margin-top: var(--padding-default);
 }
+
+.default-margin-left {
+    margin-left: var(--padding-default);
+}
