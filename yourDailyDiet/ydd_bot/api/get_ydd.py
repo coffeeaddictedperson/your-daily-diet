@@ -18,12 +18,13 @@ async def get_meal_types():
         return None
 
 
-async def get_random_meal(meal_type: str = None):
+async def get_random_meal(meal_type: str = None, user_id: int = None):
     try:
+        params = {"type": meal_type, "user_id": user_id}
         async with (aiohttp.ClientSession() as session):
-            async with session.get(meal_route, params={"type": meal_type}) as resp:
+            async with session.get(meal_route, params=params) as resp:
                 response = await resp.json()
                 await session.close()
                 return response.get('meal')
-    except Exception as e:
+    except:
         return None

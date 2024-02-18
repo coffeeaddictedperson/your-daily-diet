@@ -4,7 +4,7 @@ from aiogram.types import Message, CallbackQuery
 from filters.chat_type import ChatTypeFilter
 from filters.command_type import FormattedCommandFilter
 
-from handlers.call_api import get_meal_types, get_random_meal
+from api.get_ydd import get_meal_types, get_random_meal
 
 from messages import WELCOME_MESSAGE, GET_YOUR_MEAL
 from keyboards.meal_types_keyboard import get_meal_types_keyboard, YDDCallback
@@ -30,7 +30,10 @@ async def process_ydd_command(query: CallbackQuery, callback_data: YDDCallback):
     print('Private chat: received /meal_type command')
     try:
         # send request to api to get meal
-        meal = await get_random_meal(meal_type=callback_data.value)
+        meal = await get_random_meal(
+            meal_type=callback_data.value,
+            user_id=query.from_user.id
+        )
 
         if meal != 'None' and meal is not None:
             await query.message.answer(f'Your meal is {meal}')

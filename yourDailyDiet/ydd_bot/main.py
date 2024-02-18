@@ -13,7 +13,7 @@ async def main():
     print('Starting YDD bot...')
 
     # delete all old requests
-    print('Delete old messages...')
+    print('Deleting old messages...')
     await bot.delete_webhook(drop_pending_updates=True)
 
     # init listeners
