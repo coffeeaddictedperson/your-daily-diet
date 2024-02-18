@@ -8,7 +8,6 @@ from django.utils import timezone
 def generate_valid_till():
     return timezone.now() + timezone.timedelta(days=10)
 
-
 class BotUserData(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 

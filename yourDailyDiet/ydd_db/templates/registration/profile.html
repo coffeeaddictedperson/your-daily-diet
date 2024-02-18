@@ -13,21 +13,70 @@
 
             {% if bot_user.bot_username %}
                 <h3>{% translate "Integration with telegram bot" %}</h3>
-<pre>
-{% translate "Telegram username: " %}   {{ bot_user.bot_username }}
-{% translate "Telegram user id:  " %}   {{ bot_user.bot_user_id }}
-{% translate "Registered bot: " %}      {{ bot_user.bot_created_at }}
-{% translate "Updated:" %}              {{ bot_user.bot_updated_at }}
-{% translate "Code valid till: " %}     {{ bot_user.bot_valid_till }}
-{% translate "Is expired: " %}          {{ bot_user.is_still_valid }}
+                <table class="default-margin-bottom table-with-paddings">
+                    <tbody>
+                        <tr>
+                            <td>{% translate "Telegram username: " %}</td>
+                            <td>{{ bot_user.bot_username }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Telegram user id:  " %}</td>
+                            <td>{{ bot_user.bot_user_id }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Registered bot: " %}</td>
+                            <td>{{ bot_user.bot_created_at }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Updated:" %}</td>
+                            <td>{{ bot_user.bot_updated_at }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Code valid till: " %}</td>
+                            <td>{{ bot_user.bot_valid_till }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Is verified: " %}</td>
+                            <td>
+                                {% if bot_user.is_verified %}
+                                <span class="fa-solid fa-check color-secondary"></span>
+                                {% else %}
+                                <span class="fa-solid fa-triangle-exclamation color-warning"></span>
+                                <a href="https://telegram.me/YourDailyDietAssistantBot" target="_blank" class="btn btn-sm btn-info default-margin-left">{% translate "Connect" %}</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Is expired: " %}</td>
+                            <td>
+                                {% if bot_user.is_expired %}
+                                <i class="fa-solid fa-triangle-exclamation color-danger"></i>
+                                {% else %}
+                                <span class="fa-solid fa-xmark color-secondary"></span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Request counts: " %}</td>
+                            <td>{{ bot_user.requests_count }}</td>
+                        </tr>
 
-{% translate "Code: " %}                {{ bot_user.bot_code }}
-<span class="fa-solid fa-copy color-secondary"></span> <small>Copy code and verify in telegram</small>
-</pre>
+                        <tr class="tr-highlighted">
+                            <td>{% translate "Verification code:"%}</td>
+                            <td>{{ bot_user.bot_code }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><small><span class="fa-solid fa-copy color-secondary"></span> {% translate "Copy code and verify in telegram"%}</small><br /></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
 
                 <div class="default-margin-top">
                     <a href="{% url 'generate_new_code' %}" class="btn btn-primary">{% translate "Generate new code" %}</a>
                     <a href="{% url 'delete_integration' %}" class="btn btn-danger default-margin-left">{% translate "Delete integration" %}</a>
+                    <a href="https://telegram.me/YourDailyDietAssistantBot" target="_blank" class="btn btn-info default-margin-left">{% translate "Open YYD" %}</a>
                 </div>
             {% else %}
                 <h3>{% translate "Connect Your Daily Meal Bot" %}</h3>

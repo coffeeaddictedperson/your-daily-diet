@@ -1,10 +1,13 @@
 :root {
     --color-primary: #397367;
     --color-secondary: #42858C;
+    --color-warning: #ffb514;
+    --color-error: #ad041e;
     --color-text: #35393C;
     --color-sub-text: #35393C;
     --color-border: rgba(53, 57, 60, 0.3);
 
+    --padding-xs: 4px;
     --padding-small: 8px;
     --padding-default: 16px;
     --padding-double: 32px;
@@ -27,7 +30,12 @@ body {
 .color-secondary {
     color: var(--color-secondary);
 }
-
+.color-danger {
+    color: var(--color-error);
+}
+.color-warning {
+    color: var(--color-warning);
+}
 
 /* Spacings */
 .default-margin {
@@ -44,7 +52,20 @@ body {
 .default-margin-top {
     margin-top: var(--padding-default);
 }
+.default-margin-bottom {
+    margin-bottom: var(--padding-default);
+}
 
 .default-margin-left {
     margin-left: var(--padding-default);
+}
+.table-with-paddings {
+    width: 100%;
+}
+.table-with-paddings td {
+    padding: var(--padding-xs);
+}
+.tr-highlighted td {
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
 }

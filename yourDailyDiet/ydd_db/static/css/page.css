@@ -55,7 +55,7 @@ html, body {
     height: 100%;
 }
 .form-content {
-    width: 500px;
+    width: 540px;
     max-width: 90%;
     padding: var(--padding-double);
     border: var(--color-border) 1px solid;
