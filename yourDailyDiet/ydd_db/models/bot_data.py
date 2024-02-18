@@ -26,6 +26,7 @@ class BotUserData(models.Model):
     is_suspended = models.BooleanField(default=False)
     requests_count = models.IntegerField(default=0)
 
+
     class Meta:
         ordering = ["bot_valid_till"]
 
@@ -40,3 +41,6 @@ class BotUserData(models.Model):
         self.bot_code = uuid.uuid4().hex[:20]
         self.bot_valid_till = generate_valid_till()
         self.save()
+
+    def verify_user_code(self, code):
+        return self.bot_code == code and self.is_still_valid

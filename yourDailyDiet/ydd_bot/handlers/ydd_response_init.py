@@ -1,19 +1,17 @@
 from aiogram import Router, F
-from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
-from aiogram.handlers import CallbackQueryHandler
 from aiogram.types import Message, CallbackQuery
 
 from api.get_user import verify_user_code
 from filters.chat_type import ChatTypeFilter
 from filters.command_type import FormattedCommandFilter
 
-from handlers.call_api import get_meal_types, get_random_meal
 from handlers.states import VerifyCode
 
-from messages import WELCOME_MESSAGE
-from keyboards.meal_types_keyboard import get_meal_types_keyboard, YDDCallback
+from keyboards.meal_types_keyboard import YDDCallback
 from keyboards.auth_keyboard import get_keyboard
+
+from messages import WELCOME_MESSAGE
 
 router = Router()
 

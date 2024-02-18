@@ -13,8 +13,10 @@ class FormattedCommandFilter(BaseFilter):
         return (command.strip().lower()
                 .replace('/', '')
                 .replace('-', '')
+                .replace('_', '')
                 .replace(' ', ''))
 
     async def __call__(self, message: Message) -> bool:
+        print('FormattedCommandFilter:', message.text, FormattedCommandFilter.format_command(message.text))
         return FormattedCommandFilter.format_command(
             message.text) in self.commands
