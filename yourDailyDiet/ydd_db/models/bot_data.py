@@ -54,3 +54,7 @@ class BotUserData(models.Model):
     def set_is_verified(self):
         self.is_verified = True
         self.save()
+
+    def update_requests_count(self):
+        self.requests_count += 1
+        self.save()

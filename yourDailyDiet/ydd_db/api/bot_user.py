@@ -46,6 +46,7 @@ class BotUserAPI:
 
         if bot_user:
             if bot_user.is_verified_and_valid:
+                bot_user.update_requests_count()
                 status = USER_VERIFIED
             elif bot_user.is_expired:
                 status = USER_EXPIRED
