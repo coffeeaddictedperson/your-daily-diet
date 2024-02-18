@@ -2,13 +2,14 @@ import asyncio
 import os
 
 from aiogram import Bot, Dispatcher
+from aiogram.enums import ParseMode
 
 from handlers import ydd_response_init, ydd_response_meals, ydd_response_other
 
 
 async def main():
     token = os.getenv("API_TOKEN")
-    bot = Bot(token=token)
+    bot = Bot(token=token, parse_mode=ParseMode.HTML)
     dp = Dispatcher()
     print('Starting YDD bot...')
 

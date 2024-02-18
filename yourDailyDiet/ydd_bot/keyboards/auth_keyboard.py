@@ -13,8 +13,11 @@ login_route = f'{request_url}/login/'
 
 
 def get_keyboard(message: Message = None):
-    user_id = message.from_user.id
-    username = message.from_user.username
+    user_id = message.chat.id
+    username = message.chat.username
+
+    print('*'*10)
+    print(user_id, username, message)
 
     signup_url = LoginUrl(
         url=f'{signup_route}?username={username}&userid={user_id}',

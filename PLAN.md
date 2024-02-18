@@ -8,13 +8,13 @@
 1. + Start bot 
 2. + Ask for Meal
 3. + Get meal types 
-4. Bot user auth
+4. + Bot user auth
 
-3. Define settings (is vegan only, type of meal, etc.)
+- 3. Define settings (is vegan only, type of meal, etc.)
 
-1. Bot stats (requests, users, etc.)
-2. Different users - admins, users, paid users?, editors
-3. Grant editor permissions (or Send admin request if user ask for editor permissions ? 
+- 1. Bot stats (requests, users, etc.)
+- 2. Different users - admins, users, paid users?, editors
+- 3. Grant editor permissions (or Send admin request if user ask for editor permissions ? 
 
 1. Add test coverage
 2. Replace print with logging
@@ -22,5 +22,5 @@
 3. Record demo
 
 CSS/HTML
-1. Some nicer view for meals
-2. Add some nice icons ?
+- 1. Some nicer view for meals
++ 2. Add some nice icons ?

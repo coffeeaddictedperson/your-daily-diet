@@ -30,6 +30,10 @@ def get_random_meal(request):
         return JsonResponse({"meal": None, "user_status": user_status}, safe=False)
     else:
         random_meal = Meal.objects.get(pk=random_pk)
-        return JsonResponse({"meal": random_meal.name, "user_status":
-            user_status}, safe=False)
+        return JsonResponse({
+            "meal": random_meal.name,
+            "description": random_meal.description,
+            "is_vegetarian": random_meal.is_vegetarian,
+            "user_status": user_status
+        }, safe=False)
 

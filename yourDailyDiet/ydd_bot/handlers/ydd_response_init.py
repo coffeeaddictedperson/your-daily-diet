@@ -30,7 +30,7 @@ router = Router()
 async def process_start_command(message: Message):
     print('Private chat: received /start command')
 
-    user_status = await verify_user_request(user_id=message.from_user.id)
+    user_status = await verify_user_request(user_id=message.chat.id)
 
     message_text = get_verification_message(user_status)
 
@@ -60,10 +60,7 @@ async def process_code(message: Message, state: FSMContext) -> None:
     code = message.text
     await state.clear()
 
-    user_status = await verify_user_code(code=code, user_id=message.from_user.id)
-
-    print(user_status)
-
+    user_status = await verify_user_code(code=code, user_id=message.chat.id)
     message_text = get_verification_message(user_status)
 
     if message_text is not None:

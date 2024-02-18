@@ -29,5 +29,7 @@ https://scriptable.com/postgresql/how-to-install-postgresql-mac-docker/
 ### Creds
 `python manage.py runserver --settings=settings.local`
 
-### Create https certificate
+### Create https certificate for local development to solve issue with telegram LoginUrl    
 https://timonweb.com/django/https-django-development-server-ssl-certificate/
+
+ssl=False, fixed issue aiohttp  
