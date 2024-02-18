@@ -32,4 +32,11 @@ https://scriptable.com/postgresql/how-to-install-postgresql-mac-docker/
 ### Create https certificate for local development to solve issue with telegram LoginUrl    
 https://timonweb.com/django/https-django-development-server-ssl-certificate/
 
-ssl=False, fixed issue aiohttp  
+ssl=False, fixed issue aiohttp 
+run with  ` python yourDailyDiet/manage.py runserver_plus --cert-file cert.pem --key-file key.pem`
+from root dir, ensure that cert.pem and key.pem are in root dir
+
+# Test
+`python manage.py test`
+ export DJANGO_SETTINGS_MODULE=yourDailyDiet.yourDailyDiet.settings
+ 
