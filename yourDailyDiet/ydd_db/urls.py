@@ -1,11 +1,11 @@
 from django.urls import path, re_path
-#
-# from .api.bot_user import BotUserAPI
+
 from .api.get_meal_types import get_meal_types
 from .api.get_meal import get_random_meal
+from .views.bot_methods import delete_integration, generate_new_code
 
 from .views.registration import (user_login, user_logout, user_signup,
-                                 user_profile, delete_integration, generate_new_code)
+                                 user_profile)
 
 from .views.create_meal import CreateNewMealView
 from .views.delete_meal import DeleteMealView

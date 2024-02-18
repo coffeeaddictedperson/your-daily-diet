@@ -13,5 +13,8 @@ class SignupForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
+    bot_username = forms.CharField(widget=forms.HiddenInput(), required=False)
+    bot_user_id = forms.CharField(widget=forms.HiddenInput(), required=False)
+
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
