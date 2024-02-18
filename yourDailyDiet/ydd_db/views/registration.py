@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from ..forms.register import UserCreationForm, LoginForm, SignupForm
+
+from .bot_methods import create_bot_user, create_or_update_bot_user
+from ..forms.register import LoginForm, SignupForm
 from ..models.bot_data import BotUserData
 
 
@@ -16,9 +18,14 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
+                create_or_update_bot_user(user, form)
                 return redirect('profile')
-    else:
-        form = LoginForm()
+    elif request.method == 'GET':
+        initial = {
+            'bot_username': request.GET.get('username'),
+            'bot_user_id': request.GET.get('userid'),
+        }
+        form = LoginForm(initial=initial)
     return render(request, 'registration/login.html', {'form': form})
 
 # logout page
@@ -40,35 +47,6 @@ def user_profile(request):
             'bot_user': bot_user,
         }
     )
-
-
-def delete_integration(request):
-    bot_user = BotUserData.objects.filter(user=request.user).first()
-    if bot_user:
-        bot_user.delete()
-    return redirect('profile')
-
-
-def create_bot_user(user, form):
-    bot_username = form.cleaned_data['bot_username']
-    bot_user_id = form.cleaned_data['bot_user_id']
-
-    if bot_username and bot_user_id:
-        bot_user = BotUserData.objects.create(
-            user=user,
-            bot_username=bot_username,
-            bot_user_id=bot_user_id,
-        )
-        bot_user.save()
-        bot_user.update_bot_code()
-
-
-@login_required(login_url='login')
-def generate_new_code(request):
-    bot_user = BotUserData.objects.filter(user=request.user).first()
-    if bot_user:
-        BotUserData.update_bot_code()
-    return redirect('profile')
 
 
 def user_signup(request):

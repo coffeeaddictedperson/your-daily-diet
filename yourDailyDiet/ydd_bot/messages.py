@@ -23,9 +23,10 @@ MESSAGES = {
 }
 # Labels
 BUTTONS = {
-    'cancel': "Cancel",
+    'cancel': 'Cancel',
     'login': 'Login',
     'logout': 'Logout',
     'sign_up': 'Sign up',
-    'get_your_meal': "Get your meal",
+    'get_your_meal': 'Get your meal',
+    'verify': 'Verify',
 }

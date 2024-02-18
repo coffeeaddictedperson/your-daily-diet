@@ -13,15 +13,18 @@
 
             {% if bot_user.bot_username %}
                 <h3>{% translate "Integration with telegram bot" %}</h3>
-                <ul>
-                    <li>{% translate "Telegram username: " %}{{ bot_user.bot_username }}</li>
-                    <li>{% translate "Telegram user id: " %}{{ bot_user.bot_user_id }}</li>
-                    <li>{% translate "Registered bot first time: " %}{{ bot_user.bot_created_at }}</li>
-                    <li>{% translate "Last time updated code: " %}{{ bot_user.bot_updated_at }}</li>
-                    <li>{% translate "Code valid till: " %}{{ bot_user.bot_valid_till }}</li>
-                    <li>{% translate "Is expired: " %}{{ bot_user.is_still_valid }}</li>
-                    <li>{% translate "Code: " %}{{ bot_user.bot_code }}</li>
-                </ul>
+<pre>
+{% translate "Telegram username: " %}   {{ bot_user.bot_username }}
+{% translate "Telegram user id:  " %}   {{ bot_user.bot_user_id }}
+{% translate "Registered bot: " %}      {{ bot_user.bot_created_at }}
+{% translate "Updated:" %}              {{ bot_user.bot_updated_at }}
+{% translate "Code valid till: " %}     {{ bot_user.bot_valid_till }}
+{% translate "Is expired: " %}          {{ bot_user.is_still_valid }}
+
+{% translate "Code: " %}                {{ bot_user.bot_code }}
+<span class="fa-solid fa-copy color-secondary"></span> <small>Copy code and verify in telegram</small>
+</pre>
+
                 <div class="default-margin-top">
                     <a href="{% url 'generate_new_code' %}" class="btn btn-primary">{% translate "Generate new code" %}</a>
                     <a href="{% url 'delete_integration' %}" class="btn btn-danger default-margin-left">{% translate "Delete integration" %}</a>
