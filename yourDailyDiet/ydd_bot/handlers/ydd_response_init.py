@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
 
-from api.get_user import verify_user_code
+from api.get_user import verify_user_code, verify_user_request
 from filters.chat_type import ChatTypeFilter
 from filters.command_type import FormattedCommandFilter
 from handlers.check_user import get_verification_message
@@ -29,10 +29,21 @@ router = Router()
 )
 async def process_start_command(message: Message):
     print('Private chat: received /start command')
-    await message.answer(
-        WELCOME_MESSAGE,
-        reply_markup=get_keyboard(message)
-    )
+
+    user_status = await verify_user_request(user_id=message.from_user.id)
+
+    message_text = get_verification_message(user_status)
+
+    if message_text is not None:
+        print('Private chat: request verification')
+        await message.answer(
+            WELCOME_MESSAGE,
+            reply_markup=get_keyboard(message)
+        )
+    else:
+        print('Private chat: verification successful')
+        await message.answer(WELCOME_MESSAGE, reply_markup=get_meal_keyboard())
+
 
 
 # Verify code command, private channel only
@@ -50,6 +61,8 @@ async def process_code(message: Message, state: FSMContext) -> None:
     await state.clear()
 
     user_status = await verify_user_code(code=code, user_id=message.from_user.id)
+
+    print(user_status)
 
     message_text = get_verification_message(user_status)
 

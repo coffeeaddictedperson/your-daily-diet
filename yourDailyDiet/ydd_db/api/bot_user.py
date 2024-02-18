@@ -40,13 +40,24 @@ class BotUserAPI:
             "user_status": status
         }, safe=False)
 
+
     @staticmethod
-    def verify_user(user_id):
+    def verify_user_request(request):
+        user_id = request.GET.get('user_id')
+        return JsonResponse({
+            "status": STATUS_OK,
+            "user_status": BotUserAPI.verify_user(user_id)
+        }, safe=False)
+
+
+    @staticmethod
+    def verify_user(user_id, update_count=False):
         bot_user = BotUserData.objects.filter(bot_user_id=user_id).first()
 
         if bot_user:
             if bot_user.is_verified_and_valid:
-                bot_user.update_requests_count()
+                if update_count:
+                    bot_user.update_requests_count()
                 status = USER_VERIFIED
             elif bot_user.is_expired:
                 status = USER_EXPIRED

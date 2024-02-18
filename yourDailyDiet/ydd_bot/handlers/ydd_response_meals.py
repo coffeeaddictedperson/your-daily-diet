@@ -40,7 +40,7 @@ async def process_ydd_command(query: CallbackQuery, callback_data: YDDCallback):
         message_text = get_verification_message(user_status)
 
         if message_text is not None:
-            print('Private chat: verification not passed')
+            print('Private chat: verification not passed (/meal_type)')
             await query.message.answer(message_text, reply_markup=get_keyboard(query.message))
             return
 

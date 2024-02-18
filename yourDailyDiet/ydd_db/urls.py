@@ -43,4 +43,6 @@ urlpatterns = [
     re_path(r"api/meal(?P<type>[\w]+\&<user_id>[\w]+)?/$", get_random_meal, name='get_meal'),
     re_path(r"api/verify(?P<code>[\w]+\&<user_id>[\w]+)?$",
             BotUserAPI.verify_user_code, name='verify_user'),
+    re_path(r"api/verify-user(?P<user_id>[\w]+)?$",
+            BotUserAPI.verify_user_request, name='verify_user_request'),
 ]

@@ -10,7 +10,7 @@ def get_random_meal(request):
     request_type = request.GET.get('type')
     user_id = request.GET.get('user_id')
 
-    user_status = BotUserAPI.verify_user(user_id)
+    user_status = BotUserAPI.verify_user(user_id, True)
 
     if user_status != USER_VERIFIED:
         return JsonResponse({"meal": None, "user_status": user_status}, safe=False)
