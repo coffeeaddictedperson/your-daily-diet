@@ -39,8 +39,8 @@ class BotUserData(models.Model):
         return self.bot_valid_till < timezone.now()
 
     @property
-    def is_verified_and_valid (self):
-        return not self.is_expired() and self.is_verified
+    def is_verified_and_valid(self):
+        return not self.is_expired and self.is_verified
 
     def update_bot_code(self):
         self.bot_code = uuid.uuid4().hex[:20]

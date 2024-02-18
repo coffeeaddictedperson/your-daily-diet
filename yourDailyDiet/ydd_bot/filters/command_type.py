@@ -17,6 +17,5 @@ class FormattedCommandFilter(BaseFilter):
                 .replace(' ', ''))
 
     async def __call__(self, message: Message) -> bool:
-        print('FormattedCommandFilter:', message.text, FormattedCommandFilter.format_command(message.text))
         return FormattedCommandFilter.format_command(
             message.text) in self.commands

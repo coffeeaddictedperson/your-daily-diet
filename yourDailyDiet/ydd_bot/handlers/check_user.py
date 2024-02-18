@@ -23,9 +23,9 @@ GET_MEAL_TYPES_STEP = 'get_meal_types'
 GET_MEAL_STEP = 'get_meal'
 
 
-def verify_user_and_answer(user_status, message: Message):
+def get_verification_message(user_status):
     if user_status == USER_VERIFIED:
-        return None, None
+        return None
 
     if user_status == USER_EXPIRED:
         message_text = ('Bot verification code is expired. Please get new code '
@@ -35,6 +35,6 @@ def verify_user_and_answer(user_status, message: Message):
     else:
         message_text = 'Bot is not verified. Sign up or login to get the code.'
 
-    return message_text, get_keyboard(message)
+    return message_text
 
 

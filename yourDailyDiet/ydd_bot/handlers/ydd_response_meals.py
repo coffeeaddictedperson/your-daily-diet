@@ -5,8 +5,10 @@ from filters.chat_type import ChatTypeFilter
 from filters.command_type import FormattedCommandFilter
 
 from api.get_ydd import get_meal_types, get_random_meal
+from handlers.check_user import get_verification_message
 
 from messages import WELCOME_MESSAGE, GET_YOUR_MEAL
+from keyboards.auth_keyboard import get_keyboard
 from keyboards.meal_types_keyboard import get_meal_types_keyboard, YDDCallback
 
 router = Router()
@@ -21,6 +23,7 @@ async def process_echo(message: Message):
     print('Private chat: received get_your_meal command')
     # send request to api to get meal types
     meal_types = await get_meal_types()
+
     keyboard = get_meal_types_keyboard(meal_types)
     await message.answer(WELCOME_MESSAGE, reply_markup=keyboard)
 
@@ -30,10 +33,16 @@ async def process_ydd_command(query: CallbackQuery, callback_data: YDDCallback):
     print('Private chat: received /meal_type command')
     try:
         # send request to api to get meal
-        meal = await get_random_meal(
+        meal, user_status = await get_random_meal(
             meal_type=callback_data.value,
             user_id=query.from_user.id
         )
+        message_text = get_verification_message(user_status)
+
+        if message_text is not None:
+            print('Private chat: verification not passed')
+            await query.message.answer(message_text, reply_markup=get_keyboard(query.message))
+            return
 
         if meal != 'None' and meal is not None:
             await query.message.answer(f'Your meal is {meal}')
@@ -41,5 +50,6 @@ async def process_ydd_command(query: CallbackQuery, callback_data: YDDCallback):
             await query.message.answer(
                 f'No meal found for {callback_data.value}')
     except:
+        print('Private chat: meal type: error occurred')
         await query.message.answer(f'No meal found for {callback_data.value}. '
                                    f'Try again later.')

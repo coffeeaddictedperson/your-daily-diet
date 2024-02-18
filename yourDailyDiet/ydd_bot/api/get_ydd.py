@@ -12,15 +12,16 @@ meal_route = f'{request_url}/api/meal'
 
 
 async def get_meal_types():
-    try:
+    # try:
         async with aiohttp.ClientSession() as session:
             async with session.get(meal_types_route,
                                    ssl=IGNORE_CERTIFICATE_ISSUE) as resp:
                 response = await resp.json()
                 await session.close()
                 return response.get('meal_types')
-    except:
-        return None
+    # except Exception as e:
+    #     print('Error occurred while getting meal types')
+    #     return None
 
 
 async def get_random_meal(meal_type: str = None, user_id: int = None):
@@ -30,6 +31,8 @@ async def get_random_meal(meal_type: str = None, user_id: int = None):
             async with session.get(meal_route, params=params, ssl=IGNORE_CERTIFICATE_ISSUE) as resp:
                 response = await resp.json()
                 await session.close()
-                return response.get('meal')
+                print('Meal:', response.get('meal'))
+                return response.get('meal'), response.get('user_status')
     except:
+        print('Error occurred while getting meal')
         return None

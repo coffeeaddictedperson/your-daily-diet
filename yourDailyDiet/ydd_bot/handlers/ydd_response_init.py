@@ -5,7 +5,7 @@ from aiogram.types import Message, CallbackQuery
 from api.get_user import verify_user_code
 from filters.chat_type import ChatTypeFilter
 from filters.command_type import FormattedCommandFilter
-from handlers.check_user import verify_user_and_answer, GET_MEAL_TYPES_STEP
+from handlers.check_user import get_verification_message
 
 from handlers.states import VerifyCode
 from keyboards.get_meal_keyboard import get_meal_keyboard
@@ -49,13 +49,13 @@ async def process_code(message: Message, state: FSMContext) -> None:
     code = message.text
     await state.clear()
 
-    user_status = await verify_user_code(code=code,
-                                  user_id=message.from_user.id)
+    user_status = await verify_user_code(code=code, user_id=message.from_user.id)
 
-    message_text, kb = verify_user_and_answer(user_status, message)
-    if message_text and kb:
+    message_text = get_verification_message(user_status)
+
+    if message_text is not None:
         print('Private chat: verification not passed')
-        await message.answer(message_text, reply_markup=kb)
+        await message.answer(message_text, reply_markup=get_keyboard(message))
     else:
         print('Private chat: verification successful')
         await message.answer(WELCOME_MESSAGE, reply_markup=get_meal_keyboard())

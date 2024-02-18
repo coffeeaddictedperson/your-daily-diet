@@ -45,8 +45,10 @@ class BotUserAPI:
         bot_user = BotUserData.objects.filter(bot_user_id=user_id).first()
 
         if bot_user:
-            if bot_user.is_still_valid:
+            if bot_user.is_verified_and_valid:
                 status = USER_VERIFIED
+            elif bot_user.is_expired:
+                status = USER_EXPIRED
             else:
                 status = USER_NON_VERIFIED
         else:

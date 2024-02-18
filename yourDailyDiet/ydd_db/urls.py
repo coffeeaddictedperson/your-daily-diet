@@ -40,7 +40,7 @@ urlpatterns = [
 
     # API
     path(r"api/meal-types/", get_meal_types, name='get_meal_types'),
-    re_path(r"api/meal(?P<type>[\w]+)?/$", get_random_meal, name='get_meal'),
+    re_path(r"api/meal(?P<type>[\w]+\&<user_id>[\w]+)?/$", get_random_meal, name='get_meal'),
     re_path(r"api/verify(?P<code>[\w]+\&<user_id>[\w]+)?$",
             BotUserAPI.verify_user_code, name='verify_user'),
 ]
