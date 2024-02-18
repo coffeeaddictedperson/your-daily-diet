@@ -1,14 +1,10 @@
-from aiogram.filters.callback_data import CallbackData
+
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+from keyboards.callback_data import YDDCallback
 from messages import BTN_BREAKFAST, BTN_SNACK, BTN_DINNER
 
 BTNS_PER_ROW = 4
-
-
-class YDDCallback(CallbackData, prefix="ydd_cb"):
-    cb_type: str
-    value: str
 
 
 def get_meal_types_keyboard(meal_types=None):

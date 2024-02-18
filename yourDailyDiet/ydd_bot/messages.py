@@ -6,7 +6,7 @@ BTN_SNACK = 'Snack'
 
 UNKNOWN_COMMAND_MESSAGE = ('Sorry, I do not understand you. Please use the '
                            'command /start to begin.')
-
+GET_YOUR_MEAL = 'Get your meal'
 # Statuses
 USER_ALREADY_EXIST = "user_already_exists"
 USER_CREATED = "user_created"
