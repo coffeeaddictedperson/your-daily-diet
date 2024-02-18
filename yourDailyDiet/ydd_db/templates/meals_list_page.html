@@ -21,6 +21,7 @@
                 <div class="details">
                     {{ meal.description }}
                 </div>
+                {% if perms.ydd_db.add_meal %}
                 <div class="default-margin-top">
                     <a class="btn btn-secondary btn-sm" href="{% url 'delete_meal' pk=meal.id %}">
                         {% translate "Delete" %}
@@ -29,6 +30,7 @@
                         {% translate "Update" %}
                     </a>
                 </div>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
