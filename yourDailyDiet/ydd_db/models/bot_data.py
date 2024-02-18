@@ -22,6 +22,7 @@ class BotUserData(models.Model):
 
     bot_valid_till = models.DateTimeField(auto_now_add=True)
     bot_code = models.CharField(max_length=20, unique=True)
+    is_verified = models.BooleanField(default=False)
 
     is_suspended = models.BooleanField(default=False)
     requests_count = models.IntegerField(default=0)
@@ -34,13 +35,22 @@ class BotUserData(models.Model):
         return f'{self.bot_username}({self.bot_user_id})'
 
     @property
-    def is_still_valid(self):
-        return self.bot_valid_till >= timezone.now()
+    def is_expired(self):
+        return self.bot_valid_till < timezone.now()
+
+    @property
+    def is_verified_and_valid (self):
+        return not self.is_expired() and self.is_verified
 
     def update_bot_code(self):
         self.bot_code = uuid.uuid4().hex[:20]
         self.bot_valid_till = generate_valid_till()
+        self.is_verified = False
         self.save()
 
-    def verify_user_code(self, code):
-        return self.bot_code == code and self.is_still_valid
+    def is_valid_code(self, code):
+        return self.bot_code == code
+
+    def set_is_verified(self):
+        self.is_verified = True
+        self.save()

@@ -18,7 +18,6 @@ async def verify_user_code(code: str = '', user_id: Union[str, int] = None):
             async with session.get(verify_route, params=params, ssl=IGNORE_CERTIFICATE_ISSUE) as resp:
                 response = await resp.json()
                 await session.close()
-                print(response)
                 return response.get('user_status')
     # except:
     #     return None
